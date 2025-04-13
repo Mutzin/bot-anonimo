@@ -1,15 +1,15 @@
 from flask import Flask
-from threading import Thread
+import threading
 
 app = Flask('')
 
 @app.route('/')
 def home():
-    return "Bot está online!"
+    return "O bot está rodando!"
 
 def run():
     app.run(host='0.0.0.0', port=8080)
 
-def manter_vivo():
-    t = Thread(target=run)
+def keep_alive():
+    t = threading.Thread(target=run)
     t.start()

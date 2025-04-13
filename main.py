@@ -5,6 +5,9 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters
 # Defina o token do bot
 TOKEN = "8090131009:AAHjp7wG2D4_BPSRoQa0F6QAPQUOcLxnhqk"
 
+# ID do grupo onde as mensagens serão enviadas
+GROUP_ID = -1002626451118  # Substitua este valor pelo ID correto do seu grupo
+
 # Configurações de log para depuração
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -19,8 +22,7 @@ async def handle_private_messages(update: Update, context):
     if update.message.chat.type == "private":
         text = update.message.text
         # Enviar para o grupo específico
-        group_id = -1002626451118  # Substitua com o ID correto do grupo
-        await context.bot.send_message(group_id, f"Mensagem Anônima: {text}")
+        await context.bot.send_message(GROUP_ID, f"Mensagem Anônima: {text}")
 
 # Função para erros
 async def error(update: Update, context):

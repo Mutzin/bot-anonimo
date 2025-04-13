@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, ContextTypes, filters
+from telegram.ext import ApplicationBuilder, MessageHandler, CommandHandler, ContextTypes, filters
 from keep_alive import manter_vivo  # Nome mais claro para função de manter o bot online
 
 TOKEN = "8090131009:AAHjp7wG2D4_BPSRoQa0F6QAPQUOcLxnhqk"
@@ -16,10 +16,13 @@ async def receber_mensagem(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 if __name__ == "__main__":
     manter_vivo()  # Inicia o servidor Flask para manter o bot ativo (funciona no Koyeb)
-    app = ApplicationBuilder().token(TOKEN).build()  # Aqui você usa o ApplicationBuilder para construir o bot
+    
+    # Corrigir a criação do Application
+    app = ApplicationBuilder().token(TOKEN).build()
 
+    # Adiciona os handlers
     app.add_handler(CommandHandler("start", start))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, receber_mensagem))
 
     print("Bot iniciado...")
-    app.run_polling()  # Isso é o correto para rodar o bot com o novo método.
+    app.run_polling()

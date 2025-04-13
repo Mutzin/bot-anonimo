@@ -1,2 +1,6 @@
 python-telegram-bot==20.8
 flask
+gunicorn
+pacote1==versão
+pacote2==versão
+gunicorn==<versão desejada>  # Ou só "gunicorn" para pegar a versão mais recente
